@@ -1,0 +1,45 @@
+!include https://raw.githubusercontent.com/nsxbet/C4-PlantUML/master/C4_Context.puml
+
+!unquoted procedure NSXSystem($alias, $label, $descr="", $sprite="", $tags="", $link="", $type="", $baseShape="rectangle")
+  !$key = "present-" + $alias
+  %set_variable_value($key, "1")
+  ' $type reuses $techn definition of $tags
+  $getElementLine($baseShape, "system", $alias, $label, $type, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure NSXSystem_Ext($alias, $label, $descr="", $sprite="", $tags="", $link="", $type="", $baseShape="rectangle")
+  !$key = "present-" + $alias
+  %set_variable_value($key, "1")
+  ' $type reuses $techn definition of $tags
+  $getElementLine($baseShape , "external_system", $alias, $label, $type, $descr, $sprite, $tags, $link)
+!endprocedure
+
+!unquoted procedure NSXPerson($alias, $label, $descr="", $sprite="", $tags="", $link="", $type="")
+!$key = "present-" + $alias
+%set_variable_value($key, "1")
+!$sprite=$toElementArg($sprite, $tags, "ElementTagSprite", "person")
+' $type reuses $techn definition of $tags
+!$type=$toElementArg($type, $tags, "ElementTagTechn", "person")
+!if ($portraitPerson == "portrait") && ($sprite == "")
+actor "$getPerson($label, $type, $descr, $sprite)$getProps()" $toStereos("person", $tags) as $alias $getLink($link)
+!elseif ($portraitPerson == "outline") && ($sprite == "")
+person "$getPerson($label, $type, $descr, $sprite)$getProps()" $toStereos("person", $tags) as $alias $getLink($link)
+!else
+rectangle "$getPerson($label, $type, $descr, $sprite)$getProps()" $toStereos("person", $tags) as $alias $getLink($link)
+!endif
+!endprocedure
+
+!unquoted procedure NSXPerson_Ext($alias, $label, $descr="", $sprite="", $tags="", $link="", $type="")
+!$key = "present-" + $alias
+%set_variable_value($key, "1")
+!$sprite=$toElementArg($sprite, $tags, "ElementTagSprite", "external_person")
+' $type reuses $techn definition of $tags
+!$type=$toElementArg($type, $tags, "ElementTagTechn", "external_person")
+!if ($portraitPerson == "portrait") && ($sprite == "")
+actor "$getPerson($label, $type, $descr, $sprite)$getProps()" $toStereos("external_person", $tags) as $alias $getLink($link)
+!elseif ($portraitPerson == "outline") && ($sprite == "")
+person "$getPerson($label, $type, $descr, $sprite)$getProps()" $toStereos("external_person", $tags) as $alias $getLink($link)
+!else
+rectangle "$getPerson($label, $type, $descr, $sprite)$getProps()" $toStereos("external_person", $tags) as $alias $getLink($link)
+!endif
+!endprocedure

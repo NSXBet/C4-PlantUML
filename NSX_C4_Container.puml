@@ -1,0 +1,7 @@
+!include https://raw.githubusercontent.com/nsxbet/C4-PlantUML/master/C4_Container.puml
+
+!unquoted procedure NSXContainer($alias, $label, $techn="", $descr="", $sprite="", $tags="", $link="", $baseShape="rectangle")
+  !$key = "present-" + $alias
+  %set_variable_value($key, "1")
+  $getElementLine($baseShape , "container", $alias, $label, $techn, $descr, $sprite, $tags, $link)
+!endprocedure
