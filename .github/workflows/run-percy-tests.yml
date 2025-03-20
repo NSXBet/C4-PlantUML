@@ -15,9 +15,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
       - name: Setup Graphviz
-        uses: ts-graphviz/setup-graphviz@v2
+        uses: nsx-actions/ts-graphviz_setup-graphviz@v2
       - name: Process diagrams
-        uses: Timmy/plantuml-action@v1
+        uses: nsx-actions/Timmy_plantuml-action@v1
         with:
           args: '-v percy -o _parsed -DRELATIVE_INCLUDE="./.."'
       - name: Upload
